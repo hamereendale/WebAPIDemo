@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Entity.Migrations
 {
     [DbContext(typeof(EmployeeDbContext))]
-    [Migration("20230823135654_Initial")]
-    partial class Initial
+    [Migration("20230826094126_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,17 +27,18 @@ namespace Entity.Migrations
 
             modelBuilder.Entity("Entity.Departement", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("departmentId");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Departements");
                 });
@@ -50,12 +51,15 @@ namespace Entity.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("Departementid")
+                    b.Property<int?>("DepartementId")
                         .HasColumnType("int");
 
                     b.Property<string>("address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("departmentId")
+                        .HasColumnType("int");
 
                     b.Property<string>("fName")
                         .IsRequired()
@@ -67,7 +71,7 @@ namespace Entity.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Departementid");
+                    b.HasIndex("DepartementId");
 
                     b.ToTable("Employees");
                 });
@@ -76,7 +80,7 @@ namespace Entity.Migrations
                 {
                     b.HasOne("Entity.Departement", null)
                         .WithMany("Employees")
-                        .HasForeignKey("Departementid");
+                        .HasForeignKey("DepartementId");
                 });
 
             modelBuilder.Entity("Entity.Departement", b =>

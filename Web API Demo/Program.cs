@@ -15,6 +15,7 @@ builder.Services.AddDbContext<EmployeeDbContext>(options =>
 builder.Services.AddScoped(typeof(DbContext), typeof(EmployeeDbContext));
 
 builder.Services.AddScoped(typeof(IEmployee), typeof(EmployeeRepository));
+builder.Services.AddScoped(typeof(IDepartment), typeof(DepartmentRepository));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

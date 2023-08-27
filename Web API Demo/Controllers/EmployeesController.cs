@@ -24,5 +24,24 @@ namespace Web_API_Demo.Controllers
         {
             return _employeeService.GetAll();
         }
+
+    [HttpGet("{id}")]
+        public Task<Employee> GetById(int id)
+        {
+            return _employeeService.GetEmployee(id);
+        }
+
+    [HttpPut("{id}")]
+        public bool PutEmployee(int id, Employee employee)
+        {
+            return _employeeService.PutEmployee(id, employee);
+        }
+
+
+        [HttpDelete]
+    public Task<int> Delete(int id)
+        {
+            return _employeeService.Delete(id);
+        }
     }
 }
